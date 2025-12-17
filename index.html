@@ -1,0 +1,125 @@
+<!-- 文档类型声明：告知浏览器当前文档为HTML5标准，确保浏览器以正确的渲染模式解析页面 -->
+<!DOCTYPE html>
+<!-- 根HTML标签：页面所有内容的容器，lang="zh-CN"指定页面语言为简体中文，帮助浏览器/搜索引擎识别语言类型 -->
+<html lang="zh-CN">
+<!-- 头部区域：包含页面元信息、外部资源引入、标题等，不直接显示在页面可视区域 -->
+<head>
+  <!-- 字符编码声明：指定页面使用UTF-8编码，确保中文等多语言文字无乱码 -->
+  <meta charset="UTF-8" />
+  <!-- 视口设置：适配移动端设备
+       width=device-width：视口宽度等于设备屏幕宽度
+       initial-scale=1.0：页面初始缩放比例为1（无缩放）
+       核心作用：解决移动端页面适配问题，避免页面在手机上显示过大/过小 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- 页面标题：显示在浏览器标签栏，同时作为搜索引擎结果的标题，提升SEO和用户识别度 -->
+  <title>简易购物商城</title>
+  
+  <!-- 引入外部CSS样式文件：加载本地的style.css，用于控制页面整体样式（布局、颜色、字体等） -->
+  <link rel="stylesheet" href="style.css"/>
+  <!-- 引入外部字体图标库（Font Awesome 6.4.0）：通过CDN加载，用于显示购物车等图标，无需本地图片 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+
+<!-- 页面主体区域：所有可视内容的容器，用户能看到的页面内容都在这个标签内 -->
+<body>
+
+<!-- 全局容器：用于统一控制页面内容的最大宽度、居中对齐等，是页面的外层布局容器 -->
+<div class="container">
+  <!-- 页头区域：包含网站logo、搜索栏、购物车图标，是页面顶部的导航/功能区 -->
+  <header>
+    <!-- 页头内部容器：用于细分页头的布局，实现logo、搜索、购物车的水平排列 -->
+    <div class="header-inner">
+      <!-- 网站logo：展示品牌名称，class="logo"用于样式控制 -->
+      <div class="logo">MiniMall</div>
+      
+      <!-- 搜索栏容器：包裹搜索输入框，class="search-bar"用于样式控制 -->
+      <div class="search-bar">
+        <!-- 搜索输入框：
+             type="text"：文本输入类型
+             id="searchInput"：唯一标识，供JS获取输入内容、绑定事件
+             placeholder="搜索商品..."：输入框为空时的提示文字，引导用户输入 -->
+        <input type="text" id="searchInput" placeholder="搜索商品..." />
+      </div>
+      
+      <!-- 购物车图标容器：
+           id="cartIcon"：供JS绑定点击事件（打开购物车弹窗）
+           class="cart-icon"：用于样式控制 -->
+      <div class="cart-icon" id="cartIcon">
+        <!-- Font Awesome购物车图标：fas表示实心图标，fa-shopping-cart是购物车图标标识 -->
+        <i class="fas fa-shopping-cart"></i>
+        <!-- 购物车数量标记：显示购物车商品总数
+             id="cartCount"：供JS更新数量显示
+             class="cart-count"：用于样式控制（如红色小圆点、居中文字） -->
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容区域：包含侧边栏（分类）和商品列表，是页面核心内容区 -->
+  <main>
+    <!-- 侧边栏：展示商品分类列表，class="sidebar"用于样式控制 -->
+    <aside class="sidebar">
+      <!-- 分类标题：提示用户该区域为商品分类 -->
+      <h3>商品分类</h3>
+      <!-- 分类列表容器：无序列表，class="category-list"用于样式控制（去除默认列表样式） -->
+      <ul class="category-list">
+        <!-- 分类项-全部：
+             class="active"：默认选中状态（高亮）
+             data-category="all"：自定义数据属性，供JS获取分类标识（筛选所有商品） -->
+        <li class="active" data-category="all">全部</li>
+        <!-- 分类项-电子产品：data-category="electronics"对应JS中商品的electronics分类 -->
+        <li data-category="electronics">电子产品</li>
+        <!-- 分类项-服装：data-category="clothing"对应JS中商品的clothing分类 -->
+        <li data-category="clothing">服装</li>
+        <!-- 分类项-食品：data-category="food"对应JS中商品的food分类 -->
+        <li data-category="food">食品</li>
+        <!-- 分类项-图书：data-category="books"对应JS中商品的books分类 -->
+        <li data-category="books">图书</li>
+      </ul>
+    </aside>
+
+    <!-- 商品列表区域：JS动态生成商品卡片的容器
+         id="productList"：供JS获取容器、插入商品卡片DOM
+         class="products"：用于样式控制（网格布局、间距等） -->
+    <section class="products" id="productList">
+      <!-- 注释：提示该区域内容由JS动态生成，无静态HTML内容 -->
+      <!-- 商品由 JS 动态生成 -->
+    </section>
+  </main>
+</div>
+
+<!-- 购物车弹窗：默认隐藏，点击购物车图标后显示
+     id="cartModal"：供JS控制显示/隐藏
+     class="cart-modal"：用于样式控制（遮罩层、居中显示等） -->
+<div class="cart-modal" id="cartModal">
+  <!-- 弹窗内容容器：包裹购物车所有内容，class="cart-content"用于样式控制（白色背景、圆角、滚动等） -->
+  <div class="cart-content">
+    <!-- 关闭弹窗按钮：
+         id="closeCart"：供JS绑定点击事件（关闭弹窗）
+         class="close-cart"：用于样式控制（右上角、大号字体等） -->
+    <span class="close-cart" id="closeCart">×</span>
+    <!-- 弹窗标题：提示用户该弹窗为购物车 -->
+    <h2>购物车</h2>
+    <!-- 购物车商品列表容器：JS动态生成购物车商品项
+         id="cartItems"：供JS插入购物车商品DOM -->
+    <div id="cartItems"></div>
+    <!-- 购物车总计区域：显示商品总价 -->
+    <div class="cart-total">
+      总计: 
+      <!-- 总价显示：
+           id="cartTotal"：供JS更新总价显示
+           初始值¥0.00：默认购物车为空时的显示 -->
+      <span id="cartTotal">¥0.00</span>
+    </div>
+    <!-- 结算按钮：
+         class="checkout-btn"：用于样式控制（绿色背景、宽高、圆角等）
+         点击事件由JS绑定（提示结算功能/对接支付） -->
+    <button class="checkout-btn">去结算</button>
+  </div>
+</div>
+
+<!-- 引入外部JS文件：加载本地的main.js，实现页面交互逻辑（渲染商品、购物车操作、筛选等） -->
+<script src="main.js"></script>
+
+</body>
+</html>
