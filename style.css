@@ -1,0 +1,125 @@
+/* 全局样式重置：清除除所有元素的默认内外边距，使用border-box盒模型（元素宽度包含边框和内边距） */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* 页面主体样式：设置字体为Segoe UI（无衬线字体），背景色为浅灰色，文本颜色为深灰色 */
+body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
+
+/* 容器样式：设置最大宽度1200px，水平居中，内边距20px（控制页面内容的整体布局范围） */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* 页头样式：白色背景，上下内边距15px，底部阴影（增强层次感），底部外边距20px（与下方内容分隔） */
+header { background: #fff; padding: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,.1); margin-bottom: 20px; }
+
+/* 页头内部容器：使用flex布局，子元素两端对齐，垂直居中（用于排列logo、搜索栏和购物车图标） */
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+
+/* 网站logo样式：字体大小24px，粗体，颜色为粉色（品牌标识色） */
+.logo { font-size: 24px; font-weight: bold; color: #e91e63; }
+
+/* 搜索栏容器：占据剩余空间，最大宽度500px，左右外边距20px（控制搜索栏在页头中的位置和大小） */
+.search-bar { flex: 1; max-width: 500px; margin: 0 20px; }
+
+/* 搜索输入框样式：宽度100%，内边距10px 15px，灰色边框，圆角25px（圆角风格），字体大小16px */
+.search-bar input {
+  width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px; font-size: 16px;
+}
+
+/* 购物车图标容器：相对定位（用于定位购物车数量标记），鼠标悬停显示手型指针 */
+.cart-icon { position: relative; cursor: pointer; }
+
+/* 购物车图标样式：字体大小24px，颜色深灰色（图标视觉样式） */
+.cart-icon i { font-size: 24px; color: #555; }
+
+/* 购物车数量标记：绝对定位（相对于购物车图标），位于右上角（top:-8px right:-8px），粉色背景，白色文字，
+   宽高18px，圆形（border-radius:50%），字体大小12px，内容居中（flex布局实现水平垂直居中） */
+.cart-count { 
+  position: absolute; top: -8px; right: -8px; background: #e91e63; color: white;
+  width: 18px; height: 18px; border-radius: 50%; font-size: 12px; 
+  display: flex; align-items: center; justify-content: center; 
+}
+
+/* 主内容区：flex布局，子元素间距20px（用于排列侧边栏和商品列表） */
+main { display: flex; gap: 20px; }
+
+/* 侧边栏样式：宽度220px，白色背景，内边距20px，圆角8px，轻微阴影（增强层次感） */
+.sidebar { width: 220px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,.05); }
+
+/* 侧边栏标题：底部外边距15px（与下方列表分隔），颜色深灰色 */
+.sidebar h3 { margin-bottom: 15px; color: #555; }
+
+/* 分类列表：去除默认列表样式（无项目符号） */
+.category-list { list-style: none; }
+
+/* 分类列表项：上下内边距8px（增加点击区域），鼠标悬停显示手型指针，文字颜色灰色；
+    hover和active状态时文字为粉色，字重500（突出当前选中/ hover的分类） */
+.category-list li { padding: 8px 0; cursor: pointer; color: #666; }
+.category-list li:hover, .category-list li.active { color: #e91e63; font-weight: 500; }
+
+/* 商品列表容器：占据剩余空间，网格布局，自动填充列数（每列最小宽度220px），网格间距20px（控制商品卡片排列） */
+.products { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+
+/* 商品卡片样式：白色背景，圆角8px，溢出隐藏（裁剪图片圆角），阴影效果，hover时向上移动5px（过渡动画，增强交互感） */
+.product-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.1); transition: transform .2s; }
+.product-card:hover { transform: translateY(-5px); }
+
+/* 商品图片：高度180px，保持比例填充容器（object-fit: cover），宽度100%（自适应卡片宽度） */
+.product-img { height: 180px; object-fit: cover; width: 100%; }
+
+/* 商品信息容器：内边距15px（控制文字与边框的距离） */
+.product-info { padding: 15px; }
+
+/* 商品标题：字体大小16px，底部外边距8px（与价格分隔），颜色深灰色 */
+.product-title { font-size: 16px; margin-bottom: 8px; color: #333; }
+
+/* 商品价格：字体大小18px，粗体，粉色（突出价格），底部外边距10px（与按钮分隔） */
+.product-price { font-size: 18px; font-weight: bold; color: #e91e63; margin-bottom: 10px; }
+
+/* 加入购物车按钮：宽度100%，内边距8px，粉色背景，白色文字，无边框，圆角5px，手型指针，字体大小14px；
+   hover时背景色加深（深色粉色），增强交互反馈 */
+.add-to-cart { width: 100%; padding: 8px; background: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+.add-to-cart:hover { background: #c2185b; }
+
+/* 购物车弹窗：默认隐藏（display: none），固定定位（覆盖全页面），宽高100%，半透明黑色背景（遮罩层），
+   z-index:1000（确保在最上层），flex布局居中内容（弹窗居中显示） */
+.cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); z-index: 1000; justify-content: center; align-items: center; }
+
+/* 弹窗内容容器：白色背景，宽度90%（最大600px），最大高度80vh（超出可滚动），垂直滚动，圆角10px，内边距20px，
+   相对定位（用于定位关闭按钮） */
+.cart-content { background: #fff; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; border-radius: 10px; padding: 20px; position: relative; }
+
+/* 关闭弹窗按钮：绝对定位（右上角），字体大小24px，手型指针，颜色浅灰色（弱化视觉干扰） */
+.close-cart { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #aaa; }
+
+/* 购物车项：flex布局，垂直居中，上下内边距10px，底部边框（分隔商品项） */
+.cart-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+
+/* 购物车项图片：宽高60px，保持比例填充，圆角5px，右侧外边距10px（与文字分隔） */
+.cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; margin-right: 10px; }
+
+/* 购物车项信息：占据剩余空间 */
+.cart-item-info { flex: 1; }
+
+/* 购物车项标题：字体大小14px，深灰色 */
+.cart-item-title { font-size: 14px; color: #333; }
+
+/* 购物车项价格：粗体，粉色（突出价格） */
+.cart-item-price { font-weight: bold; color: #e91e63; }
+
+/* 移除商品按钮：红色背景，白色文字，无边框，内边距5px 8px，圆角4px，手型指针，字体大小12px */
+.remove-item { background: #ff5252; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+
+/* 购物车总计：右对齐，顶部外边距15px，字体大小18px，粗体（突出总计金额） */
+.cart-total { text-align: right; margin-top: 15px; font-size: 18px; font-weight: bold; }
+
+/* 结账按钮：宽度100%，顶部外边距15px，内边距12px，绿色背景，白色文字，无边框，圆角5px，字体大小16px，手型指针；
+   hover时背景色加深（深绿色），增强交互反馈 */
+.checkout-btn { width: 100%; margin-top: 15px; padding: 12px; background: #4caf50; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+.checkout-btn:hover { background: #388e3c; }
+
+/* 响应式布局：屏幕宽度≤768px时（移动端）的样式调整 */
+@media (max-width: 768px) {
+  main { flex-direction: column; } /* 主内容区改为垂直排列（侧边栏在上，商品列表在下） */
+  .sidebar { width: 100%; } /* 侧边栏占满宽度 */
+  .search-bar { margin: 10px 0; max-width: none; } /* 搜索栏上下外边距10px，宽度占满 */
+  .header-inner { flex-direction: column; text-align: center; } /* 页头改为垂直排列，内容居中 */
+}
